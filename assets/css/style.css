@@ -2,6 +2,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+button {
+    margin: 5px 5px;
+}
+
 .quiz {
     padding-bottom: 20px;
 }

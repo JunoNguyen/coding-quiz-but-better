@@ -1,8 +1,16 @@
-#quiz {
-    display:flex;
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.quiz {
+    padding-bottom: 20px;
 }
 
 .center {
     display: flex;
     justify-content: center;
+}
+
+#quizbox {
+    display: none;
 }

@@ -239,11 +239,13 @@ var makeQuiz = function() {
     questionArea.append(quizboxEl);
     submitEl.className+="btn btn-light";
     submitEl.id = "submit-button";
-    if(Questions1.correctAnswer === selectedAnswer){
-        $("#submit-button").on("click", nextQuestion);
-    } else {
-        alert("Wrong Answer!");
-    }
+    // if(Questions1.correctAnswer === selectedAnswer){
+    //     $("#submit-button").on("click", nextQuestion);
+    // } else {
+    //     alert("Wrong Answer!");
+    // }
+
+    $("#submit-button").on('click', nextQuestion);
 };
 
 startBtn.on("click", startQuiz);

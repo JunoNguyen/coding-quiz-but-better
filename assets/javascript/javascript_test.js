@@ -1,5 +1,6 @@
 var startBtn = $("#start-button");
 var questionArea = $("#questions-area");
+// var button0 = $("#but0ton");
 
 var Questions = [
     {
@@ -29,6 +30,26 @@ var Questions = [
     }
 ];
 
+// var stateSelected = function() {
+//     button.setAttribute('state','selected');
+// };
+
+var selectLoop = function() {
+    for(var i = 0; i <= 3; i++) {
+        var button = document.querySelector(`#button${i}`);
+        var stateSelected = function() {
+            button.setAttribute('state','selected');
+        };
+        console.log(button);
+        button.on('click', stateSelected());
+        if(button.textContent === Questions[0].answer) {
+            button.setAttribute('answer','true');
+        };
+    }
+};
+// var myInterval = setInterval(selectLoop, 2000);
+
+
 var startQuiz = function() {
     $("#quizbox").removeAttr('id', 'quizbox');
     $("#start").attr('id', 'quizbox');
@@ -45,9 +66,11 @@ var makeQuiz = function() {
     quizboxEl.append(questionHeader);
 
     for (var i = 0; i < Questions[0].choices.length; i++) {
-        var buttons = document.createElement("button");
+        var buttons = document.createElement('button');
         buttons.textContent = Questions[0].choices[i];
         buttons.className+="btn btn-dark";
+        buttons.id = 'button' + [i];
+        buttons.setAttribute('state', 'unselected');
         quizboxEl.append(buttons);
     };
 
@@ -57,13 +80,18 @@ var makeQuiz = function() {
     questionArea.append(quizboxEl);
     submitEl.className+="btn btn-light";
     submitEl.id = "submit-button";
+
+    // myInterval();
+
     // selected choice === answer, then next question, else subtract time
 
     $("#submit-button").on('click', nextQuestion);
 };
 
-var nextQuestion = function() {
 
+
+var nextQuestion = function() {
+    clearInterval(myInterval);
     questionArea.empty();
 
     quizboxEl = document.createElement("div");

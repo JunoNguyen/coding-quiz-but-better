@@ -98,10 +98,10 @@ var makeQuiz = function() {
     button2.setAttribute('onclick', 'select2()');
     button3.setAttribute('onclick', 'select3()');
 
-    console.log(button0);
-    console.log(button1);
-    console.log(button2);
-    console.log(button3);
+    // console.log(button0);
+    // console.log(button1);
+    // console.log(button2);
+    // console.log(button3);
 
     // selected choice === answer, then next question, else subtract time
 

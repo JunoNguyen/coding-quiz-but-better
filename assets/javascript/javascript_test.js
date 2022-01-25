@@ -1,6 +1,33 @@
 var startBtn = $("#start-button");
 var questionArea = $("#questions-area");
-// var button0 = $("#but0ton");
+
+var select0 = function() {
+    button0.setAttribute('state','selected');
+    button1.setAttribute('state','unselected');
+    button2.setAttribute('state','unselected');
+    button3.setAttribute('state','unselected');
+};
+
+var select1 = function() {
+    button0.setAttribute('state','unselected');
+    button1.setAttribute('state','selected');
+    button2.setAttribute('state','unselected');
+    button3.setAttribute('state','unselected');
+};
+
+var select2 = function() {
+    button0.setAttribute('state','unselected');
+    button1.setAttribute('state','unselected');
+    button2.setAttribute('state','selected');
+    button3.setAttribute('state','unselected');
+};
+
+var select3 = function() {
+    button0.setAttribute('state','unselected');
+    button1.setAttribute('state','unselected');
+    button2.setAttribute('state','unselected');
+    button3.setAttribute('state','selected');
+};
 
 var Questions = [
     {
@@ -29,26 +56,6 @@ var Questions = [
         answer: "44",
     }
 ];
-
-// var stateSelected = function() {
-//     button.setAttribute('state','selected');
-// };
-
-var selectLoop = function() {
-    for(var i = 0; i <= 3; i++) {
-        var button = document.querySelector(`#button${i}`);
-        var stateSelected = function() {
-            button.setAttribute('state','selected');
-        };
-        console.log(button);
-        button.on('click', stateSelected());
-        if(button.textContent === Questions[0].answer) {
-            button.setAttribute('answer','true');
-        };
-    }
-};
-// var myInterval = setInterval(selectLoop, 2000);
-
 
 var startQuiz = function() {
     $("#quizbox").removeAttr('id', 'quizbox');
@@ -81,7 +88,20 @@ var makeQuiz = function() {
     submitEl.className+="btn btn-light";
     submitEl.id = "submit-button";
 
-    // myInterval();
+    var button0 = document.getElementById("button0");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
+    var button3 = document.getElementById("button3");
+
+    button0.setAttribute('onclick', 'select0()');
+    button1.setAttribute('onclick', 'select1()');
+    button2.setAttribute('onclick', 'select2()');
+    button3.setAttribute('onclick', 'select3()');
+
+    console.log(button0);
+    console.log(button1);
+    console.log(button2);
+    console.log(button3);
 
     // selected choice === answer, then next question, else subtract time
 

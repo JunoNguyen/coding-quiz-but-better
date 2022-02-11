@@ -215,7 +215,6 @@ var makeQuiz = function() {
     answerEl0.textContent = Questions1.answer0;
     quizboxEl.append(answerEl0);
     answerEl0.className+="btn btn-dark";
-    answerEl0
 
     answerEl1 = document.createElement("button");
     answerEl1.textContent = Questions1.answer1;

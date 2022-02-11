@@ -1,6 +1,6 @@
 var startBtn = $("#start-button");
 var questionArea = $("#questions-area");
-var scoreboxEl = $("#scorebox");
+var scoreArea = $("#score-area");
 
 let scoreVal = 0;
 
@@ -85,6 +85,10 @@ var makeQuiz = function () {
     };
 
     submitEl = document.createElement("button");
+
+    scoreboxEl = document.createElement("div");
+    scoreboxEl.className += "contain-md bg-primary";
+
     submitEl.textContent = "Submit";
     quizboxEl.append(submitEl);
     questionArea.append(quizboxEl);
@@ -101,11 +105,6 @@ var makeQuiz = function () {
     button2.setAttribute('onclick', 'select2()');
     button3.setAttribute('onclick', 'select3()');
 
-    // console.log(button0);
-    // console.log(button1);
-    // console.log(button2);
-    // console.log(button3);
-
     // selected choice === answer, then next question, else subtract time
 
     $("#submit-button").on('click', testCorrect0);
@@ -116,10 +115,13 @@ var testCorrect0 = function () {
 
     if (button0.getAttribute('state') === 'selected') {
         scoreVal++;
-        scoreboxEl.empty();
+        scoreArea.empty();
+        scoreboxEl = document.createElement("div");
+        scoreboxEl.className += "contain-md bg-primary";
         scoreEl = document.createElement('h2');
         scoreEl.textContent = "Score: " + scoreVal;
         scoreboxEl.append(scoreEl);
+        scoreArea.append(scoreboxEl);
         questionArea.empty();
         nextQuestion();
     } else {
@@ -151,7 +153,7 @@ var nextQuestion = function () {
     submitEl.textContent = "Submit";
     quizboxEl.append(submitEl);
     submitEl.className += "btn btn-light";
-    submitEl.id = "submit-button2";
+    submitEl.id = "submit-button1";
 
     questionArea.append(quizboxEl);
 
@@ -165,7 +167,7 @@ var nextQuestion = function () {
     button2.setAttribute('onclick', 'select2()');
     button3.setAttribute('onclick', 'select3()');
 
-    $("#submit-button2").on('click', testCorrect1);
+    $("#submit-button1").on('click', testCorrect1);
 };
 
 var testCorrect1 = function () {
@@ -173,9 +175,13 @@ var testCorrect1 = function () {
 
     if (button1.getAttribute('state') === 'selected') {
         scoreVal++;
+        scoreArea.empty();
+        scoreboxEl = document.createElement("div");
+        scoreboxEl.className += "contain-md bg-primary";
         scoreEl = document.createElement('h2');
         scoreEl.textContent = "Score: " + scoreVal;
         scoreboxEl.append(scoreEl);
+        scoreArea.append(scoreboxEl);
         questionArea.empty();
         nextQuestion2();
     } else {
@@ -198,6 +204,8 @@ var nextQuestion2 = function () {
         var buttons = document.createElement("button");
         buttons.textContent = Questions[2].choices[i];
         buttons.className += "btn btn-dark";
+        buttons.id = 'button' + [i];
+        buttons.setAttribute('state', 'unselected');
         quizboxEl.append(buttons);
     };
 
@@ -205,11 +213,40 @@ var nextQuestion2 = function () {
     submitEl.textContent = "Submit";
     quizboxEl.append(submitEl);
     submitEl.className += "btn btn-light";
-    submitEl.id = "submit-button3";
+    submitEl.id = "submit-button2";
 
     questionArea.append(quizboxEl);
 
-    $("#submit-button3").on('click', nextQuestion3);
+    var button0 = document.getElementById("button0");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
+    var button3 = document.getElementById("button3");
+
+    button0.setAttribute('onclick', 'select0()');
+    button1.setAttribute('onclick', 'select1()');
+    button2.setAttribute('onclick', 'select2()');
+    button3.setAttribute('onclick', 'select3()');
+
+    $("#submit-button2").on('click', testCorrect2);
+};
+
+var testCorrect2 = function () {
+
+
+    if (button2.getAttribute('state') === 'selected') {
+        scoreVal++;
+        scoreArea.empty();
+        scoreboxEl = document.createElement("div");
+        scoreboxEl.className += "contain-md bg-primary";
+        scoreEl = document.createElement('h2');
+        scoreEl.textContent = "Score: " + scoreVal;
+        scoreboxEl.append(scoreEl);
+        scoreArea.append(scoreboxEl);
+        questionArea.empty();
+        nextQuestion3();
+    } else {
+        console.log('incorrect answer!');
+    }
 };
 
 var nextQuestion3 = function () {
@@ -227,6 +264,68 @@ var nextQuestion3 = function () {
         var buttons = document.createElement("button");
         buttons.textContent = Questions[3].choices[i];
         buttons.className += "btn btn-dark";
+        buttons.id = 'button' + [i];
+        buttons.setAttribute('state', 'unselected');
+        quizboxEl.append(buttons);
+    };
+
+    submitEl = document.createElement("button");
+    submitEl.textContent = "Submit";
+    quizboxEl.append(submitEl);
+    submitEl.className += "btn btn-light";
+    submitEl.id = "submit-button3";
+
+    questionArea.append(quizboxEl);
+
+    var button0 = document.getElementById("button0");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
+    var button3 = document.getElementById("button3");
+
+    button0.setAttribute('onclick', 'select0()');
+    button1.setAttribute('onclick', 'select1()');
+    button2.setAttribute('onclick', 'select2()');
+    button3.setAttribute('onclick', 'select3()');
+
+    $("#submit-button3").on('click', testCorrect3);
+};
+
+var testCorrect3 = function () {
+
+
+    if (button3.getAttribute('state') === 'selected') {
+        scoreVal++;
+        scoreArea.empty();
+        scoreboxEl = document.createElement("div");
+        scoreboxEl.className += "contain-md bg-primary";
+        scoreEl = document.createElement('h2');
+        scoreEl.textContent = "Score: " + scoreVal;
+        scoreboxEl.append(scoreEl);
+        scoreArea.append(scoreboxEl);
+        questionArea.empty();
+        nextQuestion4();
+    } else {
+        console.log('incorrect answer!');
+    }
+};
+
+var nextQuestion4 = function () {
+
+    questionArea.empty();
+
+    quizboxEl = document.createElement("div");
+    quizboxEl.className += "contain-md bg-primary";
+
+    questionHeader = document.createElement("h1");
+    questionHeader.textContent = Questions[4].Question;
+    quizboxEl.append(questionHeader);
+
+    for (var i = 0; i < Questions[4].choices.length; i++) {
+        var buttons = document.createElement("button");
+        buttons.textContent = Questions[4].choices[i];
+        buttons.className += "btn btn-dark";
+        buttons.id = 'button' + [i];
+        buttons.setAttribute('state', 'unselected');
         quizboxEl.append(buttons);
     };
 
@@ -238,21 +337,112 @@ var nextQuestion3 = function () {
 
     questionArea.append(quizboxEl);
 
-    $("#submit-button4").on('click', scorePage);
+    var button0 = document.getElementById("button0");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
+    var button3 = document.getElementById("button3");
+
+    button0.setAttribute('onclick', 'select0()');
+    button1.setAttribute('onclick', 'select1()');
+    button2.setAttribute('onclick', 'select2()');
+    button3.setAttribute('onclick', 'select3()');
+
+    $("#submit-button4").on('click', testCorrect4);
+};
+
+var testCorrect4 = function () {
+
+
+    if (button0.getAttribute('state') === 'selected') {
+        scoreVal++;
+        scoreArea.empty();
+        scoreboxEl = document.createElement("div");
+        scoreboxEl.className += "contain-md bg-primary";
+        scoreEl = document.createElement('h2');
+        scoreEl.textContent = "Score: " + scoreVal;
+        scoreboxEl.append(scoreEl);
+        scoreArea.append(scoreboxEl);
+        questionArea.empty();
+        nextQuestion();
+    } else {
+        console.log('incorrect answer!');
+    }
+};
+
+
+
+var nextQuestion5 = function () {
+
+    questionArea.empty();
+
+    quizboxEl = document.createElement("div");
+    quizboxEl.className += "contain-md bg-primary";
+
+    questionHeader = document.createElement("h1");
+    questionHeader.textContent = Questions[5].Question;
+    quizboxEl.append(questionHeader);
+
+    for (var i = 0; i < Questions[5].choices.length; i++) {
+        var buttons = document.createElement("button");
+        buttons.textContent = Questions[5].choices[i];
+        buttons.className += "btn btn-dark";
+        buttons.id = 'button' + [i];
+        buttons.setAttribute('state', 'unselected');
+        quizboxEl.append(buttons);
+    };
+
+    submitEl = document.createElement("button");
+    submitEl.textContent = "Submit";
+    quizboxEl.append(submitEl);
+    submitEl.className += "btn btn-light";
+    submitEl.id = "submit-button5";
+
+    questionArea.append(quizboxEl);
+
+    var button0 = document.getElementById("button0");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
+    var button3 = document.getElementById("button3");
+
+    button0.setAttribute('onclick', 'select0()');
+    button1.setAttribute('onclick', 'select1()');
+    button2.setAttribute('onclick', 'select2()');
+    button3.setAttribute('onclick', 'select3()');
+
+    $("#submit-button5").on('click', testCorrect5);
+};
+
+var testCorrect5 = function () {
+
+
+    if (button0.getAttribute('state') === 'selected') {
+        scoreVal++;
+        scoreArea.empty();
+        scoreboxEl = document.createElement("div");
+        scoreboxEl.className += "contain-md bg-primary";
+        scoreEl = document.createElement('h2');
+        scoreEl.textContent = "Score: " + scoreVal;
+        scoreboxEl.append(scoreEl);
+        scoreArea.append(scoreboxEl);
+        questionArea.empty();
+        scorePage();
+    } else {
+        console.log('incorrect answer!');
+    }
 };
 
 var scorePage = function () {
 
-    questionArea.empty();
+    scoreArea.empty();
 
     scoreboxEl = document.createElement('div');
     scoreboxEl.className += "contain-md bg-primary";
 
     scoreEl = document.createElement('h1');
     scoreEl.className += "d-flex justify-content-center";
-    scoreEl.textContent = "Final Score";
+    scoreEl.textContent = "Final Score: " + scoreVal;
     scoreboxEl.append(scoreEl);
-    questionArea.append(scoreboxEl);
+    scoreArea.append(scoreboxEl);
 
 };
 

@@ -363,68 +363,6 @@ var testCorrect4 = function () {
         scoreboxEl.append(scoreEl);
         scoreArea.append(scoreboxEl);
         questionArea.empty();
-        nextQuestion();
-    } else {
-        console.log('incorrect answer!');
-    }
-};
-
-
-
-var nextQuestion5 = function () {
-
-    questionArea.empty();
-
-    quizboxEl = document.createElement("div");
-    quizboxEl.className += "contain-md bg-primary";
-
-    questionHeader = document.createElement("h1");
-    questionHeader.textContent = Questions[5].Question;
-    quizboxEl.append(questionHeader);
-
-    for (var i = 0; i < Questions[5].choices.length; i++) {
-        var buttons = document.createElement("button");
-        buttons.textContent = Questions[5].choices[i];
-        buttons.className += "btn btn-dark";
-        buttons.id = 'button' + [i];
-        buttons.setAttribute('state', 'unselected');
-        quizboxEl.append(buttons);
-    };
-
-    submitEl = document.createElement("button");
-    submitEl.textContent = "Submit";
-    quizboxEl.append(submitEl);
-    submitEl.className += "btn btn-light";
-    submitEl.id = "submit-button5";
-
-    questionArea.append(quizboxEl);
-
-    var button0 = document.getElementById("button0");
-    var button1 = document.getElementById("button1");
-    var button2 = document.getElementById("button2");
-    var button3 = document.getElementById("button3");
-
-    button0.setAttribute('onclick', 'select0()');
-    button1.setAttribute('onclick', 'select1()');
-    button2.setAttribute('onclick', 'select2()');
-    button3.setAttribute('onclick', 'select3()');
-
-    $("#submit-button5").on('click', testCorrect5);
-};
-
-var testCorrect5 = function () {
-
-
-    if (button0.getAttribute('state') === 'selected') {
-        scoreVal++;
-        scoreArea.empty();
-        scoreboxEl = document.createElement("div");
-        scoreboxEl.className += "contain-md bg-primary";
-        scoreEl = document.createElement('h2');
-        scoreEl.textContent = "Score: " + scoreVal;
-        scoreboxEl.append(scoreEl);
-        scoreArea.append(scoreboxEl);
-        questionArea.empty();
         scorePage();
     } else {
         console.log('incorrect answer!');

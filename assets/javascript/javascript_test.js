@@ -116,6 +116,7 @@ var testCorrect0 = function () {
 
     if (button0.getAttribute('state') === 'selected') {
         scoreVal++;
+        scoreboxEl.empty();
         scoreEl = document.createElement('h2');
         scoreEl.textContent = "Score: " + scoreVal;
         scoreboxEl.append(scoreEl);
@@ -141,6 +142,8 @@ var nextQuestion = function () {
         var buttons = document.createElement("button");
         buttons.textContent = Questions[1].choices[i];
         buttons.className += "btn btn-dark";
+        buttons.id = 'button' + [i];
+        buttons.setAttribute('state', 'unselected');
         quizboxEl.append(buttons);
     };
 
@@ -152,7 +155,32 @@ var nextQuestion = function () {
 
     questionArea.append(quizboxEl);
 
-    $("#submit-button2").on('click', nextQuestion2);
+    var button0 = document.getElementById("button0");
+    var button1 = document.getElementById("button1");
+    var button2 = document.getElementById("button2");
+    var button3 = document.getElementById("button3");
+
+    button0.setAttribute('onclick', 'select0()');
+    button1.setAttribute('onclick', 'select1()');
+    button2.setAttribute('onclick', 'select2()');
+    button3.setAttribute('onclick', 'select3()');
+
+    $("#submit-button2").on('click', testCorrect1);
+};
+
+var testCorrect1 = function () {
+
+
+    if (button1.getAttribute('state') === 'selected') {
+        scoreVal++;
+        scoreEl = document.createElement('h2');
+        scoreEl.textContent = "Score: " + scoreVal;
+        scoreboxEl.append(scoreEl);
+        questionArea.empty();
+        nextQuestion2();
+    } else {
+        console.log('incorrect answer!');
+    }
 };
 
 var nextQuestion2 = function () {

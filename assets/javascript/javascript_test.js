@@ -1,6 +1,7 @@
 var startBtn = $("#start-button");
 var questionArea = $("#questions-area");
 var scoreArea = $("#score-area");
+var highscoresArea = $("#highscores-area");
 
 let scoreVal = 0;
 
@@ -380,7 +381,17 @@ var scorePage = function () {
     scoreEl.className += "d-flex justify-content-center";
     scoreEl.textContent = "Final Score: " + scoreVal;
     scoreboxEl.append(scoreEl);
+
+    localStorage.setItem("Highscore", scoreVal);
+    let highScore = localStorage.getItem('Highscore');
+
+    highscoreEl = document.createElement('h1');
+    scoreEl.className += "d-flex justify-content-center";
+    highscoreEl.textContent = "Highscore: " + highScore;
+
+    scoreboxEl.append(highscoreEl);
     scoreArea.append(scoreboxEl);
+
 
 };
 

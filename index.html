@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>View Highscores</h1>
+        <button type="button" class="btn btn-dark btn-lg" id="view-highscore" onclick="highscoreView()">View Highscores</button>
         <p>Time:</p>
     </div>
 
@@ -32,10 +32,16 @@
     </div>
 
     <div class="container" id="scorebox">
+        <div class="container" id="score-area"></div>
     </div>
 
     <div class="container" id="quizbox">
         <div id="questions-area"></div>
     </div>
+
+    <div class="container mt-5" id="highscores">
+        <div id="highscores-area"></div>
+    </div>
     <script src="assets/javascript/javascript_test.js"></script>
+    <script src="assets/javascript/highscore.js"></script>
 </body>

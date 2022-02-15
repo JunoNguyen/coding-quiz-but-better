@@ -374,6 +374,14 @@ var scorePage = function () {
 
     scoreArea.empty();
 
+    var save = function() {
+    
+        initialsEl = $("#initials");
+        console.log(initialsEl.value);
+    
+        localStorage.setItem(initialsEl.value, scoreVal);
+    };
+
     scoreboxEl = document.createElement('div');
     scoreboxEl.className += "contain-md bg-primary";
 
@@ -382,17 +390,31 @@ var scorePage = function () {
     scoreEl.textContent = "Final Score: " + scoreVal;
     scoreboxEl.append(scoreEl);
 
-    localStorage.setItem("Highscore", scoreVal);
-    let highScore = localStorage.getItem('Highscore');
+    initialsForm = document.createElement('form');
+    initialsForm.className += "d-flex justify-content-center";
 
-    highscoreEl = document.createElement('h1');
-    scoreEl.className += "d-flex justify-content-center";
-    highscoreEl.textContent = "Highscore: " + highScore;
+    initialsEl = document.createElement('input');
+    initialsEl.setAttribute('id', 'initials');
+    initialsEl.setAttribute('type', 'text');
 
-    scoreboxEl.append(highscoreEl);
+    labelEl = document.createElement('label');
+    labelEl.setAttribute('for', 'initials');
+    labelEl.className += "d-flex justify-content-center";
+    labelEl.textContent = " Input your initials to save your score!"
+
+    saveScoreBtn = document.createElement('button');
+    saveScoreBtn.className += "btn btn-dark";
+    saveScoreBtn.textContent = "Save";
+    saveScoreBtn.setAttribute('id', 'save-score');
+    saveScoreBtn.setAttribute('type', 'button')
+
+    initialsForm.append(initialsEl);
+    initialsForm.append(labelEl);
+    initialsForm.append(saveScoreBtn);
+    scoreboxEl.append(initialsForm);
     scoreArea.append(scoreboxEl);
 
-
+    $("#save-score").on('click', save);
 };
 
 startBtn.on("click", startQuiz);

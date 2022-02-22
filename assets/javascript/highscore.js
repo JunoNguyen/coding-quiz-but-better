@@ -1,16 +1,36 @@
 highscoreBox = $("#highscores");
 
-var highscoreView = function() {
-    var highscore = localStorage.getItem('Highscore');
+function allStorage() {
 
-    highscoreDiv = document.createElement("div");
+    var archive = [],
+        keys = Object.keys(localStorage),
+        i = 0, key;
+
+    for (; key = keys[i]; i++) {
+        archive.push(key + ': ' + localStorage.getItem(key));
+    }
+
+    return archive;
+}
+
+var highscoreView = function () {
+    highscoreBox.empty();
+    var highscore = allStorage();
+    var highscoreArr = JSON.stringify(highscore).split(",");
+    var highscoreUL = document.createElement("ul");
+    highscoreArr.forEach((highscore) => {
+        var highscoreLI = document.createElement("li");
+        highscoreUL.append(highscoreLI);
+        var highscoreClean = highscore.replace(/[\[\]\"\']+/g,'');
+        highscoreLI.textContent = "Highscore: " + highscoreClean;
+    });
+
+    var highscoreDiv = document.createElement("div");
     highscoreDiv.className += "contain-md bg-primary";
 
-    highscoreHeader = document.createElement("h1");
-    highscoreHeader.textContent = "Highscore: " + highscore;
-    highscoreDiv.append(highscoreHeader);
+    highscoreDiv.append(highscoreUL);
 
-    backBtn = document.createElement("button");
+    var backBtn = document.createElement("button");
     backBtn.className += "btn btn-dark";
     backBtn.textContent = "Back";
     backBtn.setAttribute("onclick", "back()")
@@ -19,6 +39,6 @@ var highscoreView = function() {
     highscoreBox.append(highscoreDiv);
 };
 
-var back = function() {
+var back = function () {
     highscoreBox.empty();
 };

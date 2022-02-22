@@ -5,6 +5,7 @@ var highscoresArea = $("#highscores-area");
 
 let scoreVal = 0;
 
+
 var select0 = function () {
     button0.setAttribute('state', 'selected');
     button1.setAttribute('state', 'unselected');
@@ -374,9 +375,10 @@ var scorePage = function () {
 
     scoreArea.empty();
 
-    var save = function() {
-    
-        initialsEl = $("#initials");
+    var save = function(e) {
+
+        e.preventDefault();
+        var initialsEl = document.getElementById('initials');
         console.log(initialsEl.value);
     
         localStorage.setItem(initialsEl.value, scoreVal);
@@ -406,7 +408,7 @@ var scorePage = function () {
     saveScoreBtn.className += "btn btn-dark";
     saveScoreBtn.textContent = "Save";
     saveScoreBtn.setAttribute('id', 'save-score');
-    saveScoreBtn.setAttribute('type', 'button')
+    saveScoreBtn.setAttribute('type', 'submit')
 
     initialsForm.append(initialsEl);
     initialsForm.append(labelEl);

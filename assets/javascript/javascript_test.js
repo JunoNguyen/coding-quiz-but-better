@@ -5,6 +5,9 @@ var highscoresArea = $("#highscores-area");
 
 let scoreVal = 0;
 
+var quizTimer = function() {
+    var seconds = 90; 
+}
 
 var select0 = function () {
     button0.setAttribute('state', 'selected');

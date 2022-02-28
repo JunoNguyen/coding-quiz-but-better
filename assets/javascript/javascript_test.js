@@ -2,12 +2,10 @@ var startBtn = $("#start-button");
 var questionArea = $("#questions-area");
 var scoreArea = $("#score-area");
 var highscoresArea = $("#highscores-area");
+var timerEl = document.getElementById('timerEl');
+var seconds = 90;
 
 let scoreVal = 0;
-
-var quizTimer = function() {
-    var seconds = 90; 
-}
 
 var select0 = function () {
     button0.setAttribute('state', 'selected');
@@ -39,31 +37,64 @@ var select3 = function () {
 
 var Questions = [
     {
-        Question: "What is 2 + 2?",
-        choices: ['4', '7', '10', '321'],
-        answer: "4",
+        Question: "What does C.S.S. stand for?",
+        choices: ['Cascading Style Sheets', 'Camera Scam Service', 'Creepy Secret Sheet', 'Cascading Steel Sheets'],
+        answer: "Cascading Style Sheets",
     },
     {
-        Question: "What is 6 + 7?",
-        choices: ['4', '13', '10', '321'],
-        answer: "13",
+        Question: "Who created javascript?",
+        choices: ['Bill Gates', 'Brendan Eich', 'Taylor Swift', 'Timmothy Gatman'],
+        answer: "Brendan Eich",
     },
     {
-        Question: "What is 43 + 127?",
-        choices: ['4', '7', '170', '321'],
-        answer: "170",
+        Question: "Which symbol do you use to reference ID in C.S.S.?",
+        choices: ['.', '!', '#', ':'],
+        answer: "#",
     },
     {
-        Question: "What is 24 + 32?",
-        choices: ['4', '7', '10', '56'],
-        answer: "56",
+        Question: "Which of these is a built in javascript function?",
+        choices: ['endInterval', 'sleep', 'test', 'setInterval'],
+        answer: "setInterval",
     },
     {
-        Question: "What is 41 + 3?",
-        choices: ['44', '7', '10', '321'],
-        answer: "44",
+        Question: "Which command changes your directory?",
+        choices: ['cd', 'mkdir', 'ls', 'touch'],
+        answer: "cd",
     }
 ];
+
+var quizTimer = function() {
+    console.log("timer has started");
+    
+    seconds = 90;
+
+    var interval = setInterval(function(){
+        if(seconds <= 0){
+            console.log("game over!");
+            clearInterval();
+            questionArea.empty();
+
+            gameoverEl = document.createElement("div");
+            gameoverEl.className += "contain-md bg-primary";
+
+            gameoverHeader = document.createElement("h1");
+            gameoverHeader.textContent = "Game Over!";
+            gameoverEl.append(gameoverHeader);
+
+            tryagainEl = document.createElement("button");
+            tryagainEl.textContent = "Try Again";
+            tryagainEl.className += "btn btn-light";
+            tryagainEl.id = "again-button";
+            gameoverEl.append(tryagainEl);
+            questionArea.append(gameoverEl);
+
+            $("#again-button").on('click', makeQuiz);
+        } else {
+            timerEl.textContent = seconds;
+            seconds--;
+        }
+    }, 1000);
+};
 
 var startQuiz = function () {
     $("#quizbox").removeAttr('id', 'quizbox');
@@ -72,6 +103,9 @@ var startQuiz = function () {
 };
 
 var makeQuiz = function () {
+
+    quizTimer();
+    questionArea.empty();
 
     quizboxEl = document.createElement("div");
     quizboxEl.className += "contain-md bg-primary";
@@ -110,13 +144,10 @@ var makeQuiz = function () {
     button2.setAttribute('onclick', 'select2()');
     button3.setAttribute('onclick', 'select3()');
 
-    // selected choice === answer, then next question, else subtract time
-
     $("#submit-button").on('click', testCorrect0);
 };
 
 var testCorrect0 = function () {
-
 
     if (button0.getAttribute('state') === 'selected') {
         scoreVal++;
@@ -131,10 +162,9 @@ var testCorrect0 = function () {
         nextQuestion();
     } else {
         console.log('incorrect answer!');
+        seconds = seconds-15;
     }
 };
-
-
 
 var nextQuestion = function () {
 
@@ -191,6 +221,7 @@ var testCorrect1 = function () {
         nextQuestion2();
     } else {
         console.log('incorrect answer!');
+        seconds = seconds-15;
     }
 };
 
@@ -237,7 +268,6 @@ var nextQuestion2 = function () {
 
 var testCorrect2 = function () {
 
-
     if (button2.getAttribute('state') === 'selected') {
         scoreVal++;
         scoreArea.empty();
@@ -251,6 +281,7 @@ var testCorrect2 = function () {
         nextQuestion3();
     } else {
         console.log('incorrect answer!');
+        seconds = seconds-15;
     }
 };
 
@@ -311,6 +342,7 @@ var testCorrect3 = function () {
         nextQuestion4();
     } else {
         console.log('incorrect answer!');
+        seconds = seconds-15;
     }
 };
 
@@ -371,6 +403,7 @@ var testCorrect4 = function () {
         scorePage();
     } else {
         console.log('incorrect answer!');
+        seconds = seconds-15;
     }
 };
 

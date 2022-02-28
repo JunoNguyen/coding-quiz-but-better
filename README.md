@@ -16,18 +16,19 @@ Table of Contents
 
 [Link to Repo](https://github.com/JunoNguyen/coding-quiz-but-better)
 
+[Github Profile](https://github.com/JunoNguyen)
+
+[Github Pages](https://junonguyen.github.io/coding-quiz-but-better/)
+
     I created this code in order to test your coding knowledge.
 ## Description
     This project is a quiz that tests your coding knowledge
 ## Usage
-[Github Pages]https://junonguyen.github.io/coding-quiz-but-better/<br>
     Follow the github pages link to take the quiz!
 ## Built With
     HTML,CSS,Javscript
 ## Questions
-[Github Profile](https://github.com/JunoNguyen)<br>
-junonguyen27@gmail.com<br>
-    JunoNguyen
+junonguyen27@gmail.com
     Email me if you have any questions
 ## Contributions
     I do not want contributions
